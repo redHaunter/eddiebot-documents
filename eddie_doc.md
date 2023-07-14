@@ -28,7 +28,8 @@ eddiebot_bringup package launch file(eddie.launch.yaml) spin four distinct nodes
 - eddie_ping -> for reading distance sensors (infrared and ultrasonic) installed on robot
 - eddie_adc -> for reading battery voltage level
 - eddie_controller -> for interacting with robot velocity related parts
-- eddiebot_nav package launch file (eddiebot.launch.py) does the same as the eddiebot_bringup package launch file but for bringing up the data needed for navigating as below
+
+eddiebot_nav package launch file (eddiebot.launch.py) does the same as the eddiebot_bringup package launch file but for bringing up the data needed for navigating as below
 - eddie_odom node from eddie_odom package -> explained in exercise 6
 - eddie_vel_controller node from eddie_vel_controller package -> published cmd_vel topic data to eddie/cmd_vel topic
 - kinect_ros2_node node from kinect_ros2 package -> explained in exercise 1
