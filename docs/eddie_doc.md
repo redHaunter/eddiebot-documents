@@ -88,8 +88,12 @@ With the parameters below defined in the provided library x_, y_ and th_ can be 
 - COUNTS_PER_REVOLUTION is the encoder counter per each wheel revolution which is set to 36 as default.
 - WHEEL_BASE which defines the distance between centers of wheels that is set to 0.39 as default.
 - DISTANCE_PER_COUNT which can be calculated as below, is the distance each wheel takes to be increased by one.
-	(π^2* WHEEL_RADIUS)/(COUNTS_PER_REVOLUTION)
-	The formula can be explained by using division of the perimeter of wheels and their revolution counts.
+
+$$
+\frac{\pi^{2} * \text{WHEEL RADIUS}}{\text{COUNTS PER REVOLUTION}}
+$$
+
+> The formula can be explained by using division of the perimeter of wheels and their revolution counts.
 
 By using mentioned parameters, the goal which is using odometry for computing navigation can be achieved.
 
@@ -100,15 +104,15 @@ First of all, the total number of ticks for each wheel needs to be calculated wi
 Secondly the changes of x, y and theta can be monitored and computed using below formulas.
 - delta_th =  ((delta_right_cnt - delta_left_cnt )  * DISTANCE_PER_COUNT)/(WHEEL_BASE)
 > By calculating the difference between left and right wheel’s number of ticks the whole number of ticks of the robot is computed and the distance of the robot’s movement is resulted by multiplying the DISTANCE_PER_COUNT parameter and by dividing WHEEL_BASE parameter the angle of rotation of the robot (yaw) is calculated.
-- delta_x = (delta_right_cnt  + delta_left_cnt )  * DISTANCE_PER_COUNT *  cos⁡(th_)
+- delta_x = (delta_right_cnt  + delta_left_cnt )  * DISTANCE_PER_COUNT * cos⁡(th_)
 > With using summation of number of ticks of right and left wheels the whole robot’s movement in total is computed and converted to meters with multiplying by DISTANCE_PER_COUNT. As the result the movement along x axis is calculated by multiplying cosine of the theta angle to the whole robot’s movement. 
-- delta_y = (delta_right_cnt  + delta_left_cnt )  * DISTANCE_PER_COUNT *  sin⁡(th_)
+- delta_y = (delta_right_cnt  + delta_left_cnt )  * DISTANCE_PER_COUNT * sin⁡(th_)
 > For calculating the whole movement along y axis the sinus is used and the result formula is shown above.
 
 Now using the formulas above, x_, y_ and th_  can be defined as:
-- x_=x_ (previous data)  +delta_x (movement along x axis)
-- y_=y_ (previous data)  +delta_y (movement along y axis)
-- th_=th_ (previous data)  +delta_th (rotation along z axis)
+- x_ = x_ (previous data)  + delta_x (movement along x axis)
+- y_ = y_ (previous data)  + delta_y (movement along y axis)
+- th_ = th_ (previous data)  + delta_th (rotation along z axis)
 > Due to their values being absolute in the map, their values need to be updated with the new movements/rotations along related axes.
 
 Then we can use them in order to create messages to transform over tf and odometry over ros:
