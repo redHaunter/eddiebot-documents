@@ -3,23 +3,23 @@ We bring up depth image and RGB image data of Microsoft Kinect xbox-360 using Ki
 We also use the Kinect_ros2 executable node to publish the require data for other packages, the node has been spun in nav package of eddiebot, it can also execute and spin manually using “ros2 run kinect_ros2 kinect_ros2_node” command.
 Here’s the output of RGB and depth image of Microsoft Kinect in rviz:
 
-<img src="images/1_1.png" alt="1_1" width="750"/>
+<img src="images/1_1.png" alt="1_1" width="600"/>
 
 
 # Exercise 2
 As shown below, when using rqt and listening to the related topics, the /image_raw does not have a valid timestamp.
 
-<img src="images/2_1.png" alt="1_1" width="750"/>
+<img src="images/2_1.png" alt="1_1" width="600"/>
 
 
 The timestamp of /depth/image_raw has been set in Kinect_ros2_component.cpp code, the missing timestamp of /image_raw has been added similarly to the available timestamp. As shown below the rgb_info topic header.stamp also has been set to the timestamp (it was needed for rtabmap Kinect in exercise 7).
 
-<img src="images/2_2.png" alt="1_1" width="750"/>
+<img src="images/2_2.png" alt="1_1" width="600"/>
 
 
 The result of the changes of the code can be seen below that the /image_raw topic has a timestamp in its header part.
 
-<img src="images/2_3.png" alt="1_1" width="750"/>
+<img src="images/2_3.png" alt="1_1" width="600"/>
 
 
 # Exercise 3
