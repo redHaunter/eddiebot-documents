@@ -1,20 +1,28 @@
-#Exercise 1
+# Exercise 1
 We bring up depth image and RGB image data of Microsoft Kinect xbox-360 using Kinect_ros2 package with IPC support, based on Libfreenect. Libfreenect is a user-space driver for Microsoft Kinect. Using freenect-glview command, RGB/depth image can be seen.
 We also use the Kinect_ros2 executable node to publish the require data for other packages, the node has been spun in nav package of eddiebot, it can also execute and spin manually using “ros2 run kinect_ros2 kinect_ros2_node” command.
 Here’s the output of RGB and depth image of Microsoft Kinect in rviz:
+
 ![Alt text](images/1_1.png)
 
-#Exercise 2
+
+# Exercise 2
 As shown below, when using rqt and listening to the related topics, the /image_raw does not have a valid timestamp.
+
 ![Alt text](images/2_1.png)
 
-The timestamp of /depth/image_raw has been set in Kinect_ros2_component.cpp code, the missing timestamp of /image_raw has been added similarly to the available timestamp. As shown below the rgb_info topic header.stamp also has been set to the timestamp (it was needed for rtabmap Kinect in exercise 7). 
+
+The timestamp of /depth/image_raw has been set in Kinect_ros2_component.cpp code, the missing timestamp of /image_raw has been added similarly to the available timestamp. As shown below the rgb_info topic header.stamp also has been set to the timestamp (it was needed for rtabmap Kinect in exercise 7).
+
 ![Alt text](images/2_2.png)
 
+
 The result of the changes of the code can be seen below that the /image_raw topic has a timestamp in its header part.
+
 ![Alt text](images/2_3.png)
 
-#Exercise 3
+
+# Exercise 3
 eddiebot_bringup package launch file(eddie.launch.yaml) spin four distinct nodes for bringing up different data of robot to ros2. The nodes are:
 	eddie -> for connecting to eddie board
 	eddie_ping -> for reading distance sensors (infrared and ultrasonic) installed on robot
@@ -32,13 +40,13 @@ Here’s the output of the view_model in rviz with using the argument “desctip
 
 [Teleop video](https://youtube.com/shorts/rbCG_R9kxoA?feature=share)
 
-#Exercise 4
+# Exercise 4
 If ROS_DOMAIN_ID has not been set, default value is equal to 0, ros2 machines on the same network can communicate via different ROS_DOMAIN_ID’s (up-to 128). 
 In our case by using the ros2 run teleop_twist_keyboard teleop_twist_keyboard command eddiebot velocity controller related topics can be controlled by another ros2 machine.
 
 [Network video](https://youtube.com/shorts/14_s8WRbBYM?feature=share)
 
-#Exercise 5
+# Exercise 5
 By bringing up the rgbd-image of Microsoft Kinect data and convert it to fake laser scan data, slam can be done using slam_toolbox package.
 After bringing up the required nodes for eddiebot (more explanation provided in previous exercises), robot odometry data calculated and published by eddiebot_nav package which also explained previously.
 using this data and the fake laser scanner, slam_toolbox package can do the localization and mapping simultaneously for eddie robot.
@@ -54,7 +62,7 @@ Xy/yaw_goal_tolerance can be changed to achieve goal state smoothly without bein
 [Slam video](https://youtube.com/shorts/jVgVwJULtfY?feature=share)
 [Nav video](https://youtube.com/shorts/NobdCORuf48?feature=share)
 
-#Exercise 6
+# Exercise 6
 Eddiebot uses edditbot_odom package to compute its odometry and publish it to the “odom” topic. Commonly odometry is calculated using wheel encoders, IMU, etc. In our case, with the lack of viable sensors, the package only uses wheel encoders data through subscribing to the “eddie/encoders_data” topic which is provided by eddiebot_bringup package.
 Eddiebot_nav package is used for navigation by creating multiple nodes such as eddiebot_odom. It executes the eddie_odom executable node from eddiebot_odom package for further computation.
 For every callback of “eddie/encoders_data” topic in eddibot_odom package the node calculates x_ (absolute position in x-axis), y_ (absolute position in y-axis) and th_ (absolute rotation in z-axis).
@@ -95,7 +103,7 @@ odom.twist.twist.linear.y=(delta_y)/dt
 odom.twist.twist.angular.z=(delta_th)/dt
 Which dt is defined as dt= (current_time-last_time ).seconds() and by dividing the whole movement/rotation along each axis by the consumed time of the movement/rotation to get each velocity correctly.
 
-#Exercise 7
+# Exercise 7
 Other method to do slam for mobile robots is using visual slam with using of robot’s camera data (such as depth-image, rgb-image, and etc.), there are multiple packages which can be used to achieve vslam (with different approaches to feature-detection, point clouds 3D, 2D grid_map, and etc.). 
 In our case we are using rtabmap package, the package provides so many alternative ways of doing slam, the chosen one is similar to exercise 5 by converting the rgbd-image of Microsoft Kinect to fake laser scan and using odometry (only wheel encoders in our case) data to achieve slam; It has been done by the rtabmap.launch.py launch file, the launch file launches some other launch files:
 	rtabmap node from rtabmap_slam package, if the localization argument value set to false (default value) the launch file with desired set of parameters launches, the node do the slam and save the map in /home/.ros directory (.db format).
