@@ -3,6 +3,7 @@ We bring up depth image and RGB image data of Microsoft Kinect xbox-360 using Ki
 We also use the Kinect_ros2 executable node to publish the require data for other packages, the node has been spun in nav package of eddiebot, it can also execute and spin manually using “ros2 run kinect_ros2 kinect_ros2_node” command.
 Here’s the output of RGB and depth image of Microsoft Kinect in rviz:
 
+<img src="(images/1_1.png" alt="1_1" width="200"/>
 ![Alt text](images/1_1.png)
 
 
