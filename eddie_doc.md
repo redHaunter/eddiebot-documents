@@ -36,6 +36,7 @@ eddiebot_nav package launch file (eddiebot.launch.py) does the same as the eddie
 - Does a static transformation to kinect_depth frame in respect of camera_depth_optical_frame 
 - Does a static transformation to kinect_rgb frame in respect of camera_rgb_optical_frame 
 - depthimage_to_laserscan_node from depthimage_to_laserscan package -> converting the rgbd-camera data of Microsoft Kinect to be as same as laser scanner data
+
 using teleop_twist_keyboard executable node in teleop_twist_keyboard, eddiebot can be controlled using keyboard button pushes through simple_velocity commands which brought up by the eddiebot to control its velocity.
 Here’s the output of the view_model in rviz with using the argument “desctiption:=True”, it builds the tf tree of the robot related frames (the transformation between frames and child parent relation between them)
 
