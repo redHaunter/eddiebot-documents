@@ -74,6 +74,7 @@ Min/Max velocity/acceleration are also decreased due to safety issues.
 Xy/yaw_goal_tolerance can be changed to achieve goal state smoothly without being too precise.
 
 [Slam video](https://youtube.com/shorts/jVgVwJULtfY?feature=share)
+
 [Nav video](https://youtube.com/shorts/NobdCORuf48?feature=share)
 
 # Exercise 6
@@ -151,6 +152,9 @@ To fix the issue, tf-delay parameter was tested but the output wasn’t desirabl
 - To do robot navigation, by using the same approach we used in Ex.5; listening to /cmd_vel topic while using the rtabmap, the topic frequency was 10Hz while sending only linear velocity command which was different to pure rotation which was 6Hz, using the same tactic as shown in Ex.5, smoothing_frequency parameter seems to be set to 0.1 but the result is not satisfying for rotation
 
 [Slam video](https://youtube.com/shorts/tpVd0QMH0XY?feature=share)
+
 [Nav video](https://youtube.com/shorts/RgtjkbZfwvE?feature=share)
+
 [Map rotation problem](https://youtu.be/w_zrhgBISSQ)
+
 [Map rotation problem using TF_delay](https://youtu.be/di4a_sXJpTw)
