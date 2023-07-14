@@ -24,17 +24,17 @@ The result of the changes of the code can be seen below that the /image_raw topi
 
 # Exercise 3
 eddiebot_bringup package launch file(eddie.launch.yaml) spin four distinct nodes for bringing up different data of robot to ros2. The nodes are:
-	eddie -> for connecting to eddie board
-	eddie_ping -> for reading distance sensors (infrared and ultrasonic) installed on robot
-	eddie_adc -> for reading battery voltage level
-	eddie_controller -> for interacting with robot velocity related parts
-eddiebot_nav package launch file (eddiebot.launch.py) does the same as the eddiebot_bringup package launch file but for bringing up the data needed for navigating as below
-	eddie_odom node from eddie_odom package -> explained in exercise 6
-	eddie_vel_controller node from eddie_vel_controller package -> published cmd_vel topic data to eddie/cmd_vel topic
-	kinect_ros2_node node from kinect_ros2 package -> explained in exercise 1
-	Does a static transformation to kinect_depth frame in respect of camera_depth_optical_frame 
-	Does a static transformation to kinect_rgb frame in respect of camera_rgb_optical_frame 
-	depthimage_to_laserscan_node from depthimage_to_laserscan package -> converting the rgbd-camera data of Microsoft Kinect to be as same as laser scanner data
+- eddie -> for connecting to eddie board
+- eddie_ping -> for reading distance sensors (infrared and ultrasonic) installed on robot
+- eddie_adc -> for reading battery voltage level
+- eddie_controller -> for interacting with robot velocity related parts
+- eddiebot_nav package launch file (eddiebot.launch.py) does the same as the eddiebot_bringup package launch file but for bringing up the data needed for navigating as below
+- eddie_odom node from eddie_odom package -> explained in exercise 6
+- eddie_vel_controller node from eddie_vel_controller package -> published cmd_vel topic data to eddie/cmd_vel topic
+- kinect_ros2_node node from kinect_ros2 package -> explained in exercise 1
+- Does a static transformation to kinect_depth frame in respect of camera_depth_optical_frame 
+- Does a static transformation to kinect_rgb frame in respect of camera_rgb_optical_frame 
+- depthimage_to_laserscan_node from depthimage_to_laserscan package -> converting the rgbd-camera data of Microsoft Kinect to be as same as laser scanner data
 using teleop_twist_keyboard executable node in teleop_twist_keyboard, eddiebot can be controlled using keyboard button pushes through simple_velocity commands which brought up by the eddiebot to control its velocity.
 Here’s the output of the view_model in rviz with using the argument “desctiption:=True”, it builds the tf tree of the robot related frames (the transformation between frames and child parent relation between them)
 
